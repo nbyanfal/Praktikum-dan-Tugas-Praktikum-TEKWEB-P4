@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi To-Do List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: #f1f5f9;
+            color: #172033;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            width: min(100%, 520px);
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 20px 50px rgb(15 23 42 / 10%);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+        }
+
+        .description {
+            margin: 0 0 24px;
+            color: #64748b;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            min-width: 0;
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font: inherit;
+        }
+
+        button {
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 10px;
+            background: #2563eb;
+            color: #fff;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:focus-visible,
+        input:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 2px;
+        }
+
+        #task-list {
+            display: grid;
+            gap: 10px;
+            margin: 22px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .task-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+        }
+
+        .task-text {
+            flex: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .task-text.completed {
+            color: #64748b;
+            text-decoration: line-through;
+        }
+
+        .delete-button {
+            padding: 8px 11px;
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .delete-button:hover {
+            background: #fecaca;
+        }
+
+        #empty-state,
+        #status-message {
+            margin: 18px 0 0;
+            color: #64748b;
+            text-align: center;
+        }
+
+        #status-message:empty {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 24px 18px;
+            }
+
+            form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>To-Do List</h1>
+        <p class="description">Catat tugasmu dan tandai setelah selesai.</p>
+        <form id="task-form">
+            <label for="task-input" hidden>Tugas baru</label>
+            <input id="task-input" type="text" placeholder="Masukkan tugas baru..." autocomplete="off" required>
+            <button type="submit">Tambah</button>
+        </form>
+        <ul id="task-list" aria-label="Daftar tugas"></ul>
+        <p id="empty-state">Belum ada tugas. Tambahkan tugas pertamamu!</p>
+        <p id="status-message" role="status" aria-live="polite"></p>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>
